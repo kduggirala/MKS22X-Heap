@@ -81,15 +81,21 @@ public class MyHeap {
 	
 	public static void heapsort(int[] a) {
 		heapify(a);
+		for (int i = a.length - 1; i > 0; i--) {
+			swap(a, 0, i);
+			pushDown(a, i, 0);
+		}
 	}
 	   // - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
 	public static void main(String[] args) {
-		int[] a = new int[1000];
-		for (int i = 0; i < 1000; i++) {
-			a[i] = (int) (Math.random() * 100000);
+		int[] a = new int[20];
+		for (int i = 0; i < 20; i++) {
+			a[i] = (int) (Math.random() * 100);
 		}
-		heapify(a);
-		System.out.println(isHeap(a));
+		heapsort(a);
+		for (int i : a) {
+			System.out.print(i + " ");
+		}
 	}
 	public static boolean isHeap(int[] a) {
 		int child1, child2;

@@ -72,17 +72,34 @@ public class MyHeap {
 	}
 	    //- convert the array into a valid heap. [ should be O(n) ]
 	private static void heapifyHelp(int[] a, int index) {
-		if (index < a.length) { //if it is a valid node
+		if (2 * index + 1 < a.length) { //if it is has children
 			heapifyHelp(a, 2 * index + 1);
 			heapifyHelp(a, 2 * index + 2);
 			pushDown(a, a.length, index);
 		}
 	}
-
+	
 	public static void heapsort(int[] a) {
 		heapify(a);
 	}
 	   // - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
-
+	public static void main(String[] args) {
+		int[] a = new int[1000];
+		for (int i = 0; i < 1000; i++) {
+			a[i] = (int) (Math.random() * 100000);
+		}
+		heapify(a);
+		System.out.println(isHeap(a));
+	}
+	public static boolean isHeap(int[] a) {
+		int child1, child2;
+		for (int i = 0; i < a.length; i++) {
+			child1 = (2 * i) + 1;
+			child2 = child1 + 1;
+			if (child1 < a.length && a[child1] > a[i]) return false;
+			if (child2 < a.length && a[child2] > a[i]) return false;
+		}
+		return true;
+	}
 
 }

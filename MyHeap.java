@@ -49,7 +49,19 @@ public class MyHeap {
 	     - precondition: index is between 0 and size-1 inclusive
 	     - precondition: size is between 0 and data.length-1 inclusive.
 	*/
-	private static void pushUp(int[]data,int index) {}
+	private static void pushUp(int[]data,int index) {
+		int parent;
+		while (index > 0) {
+			parent = (index - 1) / 2;
+			if (data[index] > data[parent]) {
+				swap(data, index, parent);
+				index = parent;
+			}
+			else {
+				break;
+			}
+		}
+	}
 	/*
 	     - precondition: index is between 0 and data.length-1 inclusive.
 	*/

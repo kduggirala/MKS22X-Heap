@@ -67,10 +67,21 @@ public class MyHeap {
 	*/
 
 	//We will discuss this today:
-	public static void heapify(int[] a) {}
+	public static void heapify(int[] a) {
+		heapifyHelp(a, 0);
+	}
 	    //- convert the array into a valid heap. [ should be O(n) ]
+	private static void heapifyHelp(int[] a, int index) {
+		if (index < a.length) { //if it is a valid node
+			heapifyHelp(a, 2 * index + 1);
+			heapifyHelp(a, 2 * index + 2);
+			pushDown(a, a.length, index);
+		}
+	}
 
-	public static void heapsort(int[] a) {}
+	public static void heapsort(int[] a) {
+		heapify(a);
+	}
 	   // - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
 
 
